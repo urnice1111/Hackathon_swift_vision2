@@ -6,10 +6,16 @@
 //
 
 import SwiftUI
+import RealityKit
+import RealityKitContent
 
 struct Circuito: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        RealityView { content in
+            if let scene = try? await Entity(named: "Lab", in: realityKitContentBundle) {
+                content.add(scene)
+            }
+        }
     }
 }
 

@@ -10,21 +10,22 @@ import RealityKit
 import RealityKitContent
 
 struct ContentView: View {
-
+    @Environment(\.openWindow) var openWindow
+    
+    @Environment(\.openImmersiveSpace) var openImmersiveSpace
+    
     var body: some View {
         VStack {
-            Model3D(named: "Scene", bundle: realityKitContentBundle)
-                .padding(.bottom, 50)
-
-            Text("Hello, world!")
-
-            ToggleImmersiveSpaceButton()
+                Button("Open Lab") {
+                        Task {
+                            await openImmersiveSpace(id: "Lab")
+                        }
+                }
+            }
+            .padding()
         }
-        .padding()
     }
-}
 
-#Preview(windowStyle: .automatic) {
+#Preview() {
     ContentView()
-        .environment(AppModel())
 }

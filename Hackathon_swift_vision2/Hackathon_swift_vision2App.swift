@@ -9,25 +9,27 @@ import SwiftUI
 
 @main
 struct Hackathon_swift_vision2App: App {
-
-    @State private var appModel = AppModel()
-
+    
+   // @State private var appModel = AppModel()
+    
     var body: some Scene {
-        WindowGroup {
+        WindowGroup(id: "Content") {
             ContentView()
-                .environment(appModel)
+                // .environment(appModel)
         }
-
-        ImmersiveSpace(id: appModel.immersiveSpaceID) {
-            ImmersiveView()
-                .environment(appModel)
-                .onAppear {
-                    appModel.immersiveSpaceState = .open
-                }
-                .onDisappear {
-                    appModel.immersiveSpaceState = .closed
-                }
+        
+        ImmersiveSpace(id: "Lab") {
+            Circuito()
+            //            ImmersiveView()
+            //                .environment(appModel)
+            //                .onAppear {
+            //                    appModel.immersiveSpaceState = .open
+            //                }
+            //                .onDisappear {
+            //                    appModel.immersiveSpaceState = .closed
+            //                }
+            //        }
+            //.immersionStyle(selection: .constant(.mixed), in: .mixed)
         }
-        .immersionStyle(selection: .constant(.mixed), in: .mixed)
-     }
+    }
 }
